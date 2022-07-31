@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: rgba(34, 150, 228, 0.5);
+}
+
+.img{
+    border-radius: 0.5em;
+    width: 40%;
+}
+
+.h1{
+    color: white;
+}

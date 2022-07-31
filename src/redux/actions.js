@@ -16,6 +16,7 @@ export const ADD_TO_CARDS = 'ADD_TO_CARDS';
 export const ERROR_POKEMON = { name: 'ERROR - NOMBRE DUPLICADO' };
 export const EDIT = 'EDIT';
 export const DELETE_POKEMON = 'DELETE_POKEMON';
+export const SET_LOADING = 'SET_LOADING';
 
 export function loadCards(){
     return async function (dispatch){
@@ -23,7 +24,7 @@ export function loadCards(){
         const subPromesas = [];
         const all = [];
         try {
-            await fetch( `https://pokeapi.co/api/v2/pokemon?offset=0&limit=150` )
+            await fetch( `https://pokeapi.co/api/v2/pokemon?offset=0&limit=500` )
                 .then( js => js.json() )
                 .then( data => data.results.forEach( r => promesas.push( fetch(r.url) ) ))
                 .then( () => {
@@ -52,6 +53,7 @@ export function loadCards(){
                                 } )
                                 // .then( () => console.log(all) )
                                 .then( cards => dispatch( { type: LOAD_CARDS, payload: all } ) )
+                                .then( s => dispatch( { type: SET_LOADING, payload: false } ) )
                         } )
                 })
                 .catch( err => console.error(err) );
@@ -109,3 +111,4 @@ export const addToCards = (pokemon) => ({ type: ADD_TO_CARDS, payload: pokemon }
 
 export const edit = (pokemon) => ({ type: EDIT, payload: pokemon }); 
 export const deletePokemon = (idApi) => ({ type: DELETE_POKEMON, payload: idApi });
+export const setLoading = () => ({ type: SET_LOADING, payload: null});

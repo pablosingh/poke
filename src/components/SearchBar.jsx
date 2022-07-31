@@ -32,9 +32,9 @@ export default function SearchBar() {
                     Search
                 </button>
         </form>
-                <button onClick={ ()=> console.log(estado)}>
+                {/* <button onClick={ ()=> console.log(estado)}>
                     Estado
-                </button>
+                </button> */}
         </div>
     )
 }

@@ -1,3 +1,4 @@
+import { act } from 'react-dom/test-utils';
 import { 
     LOAD_CARDS,
     LOAD_TYPES,
@@ -15,7 +16,8 @@ import {
     SEARCH_BY_NAME,
     SEARCH_BY_ID,
     EDIT,
-    DELETE_POKEMON
+    DELETE_POKEMON,
+    SET_LOADING
 } from './actions';
 
 import { order } from './functionsFilters';
@@ -30,7 +32,8 @@ const initialState = {
     types: [],
     // ******************
     amountForPage: 10,
-    pokemon: {}
+    pokemon: {},
+    loading: true
     };
 
 export default (state = initialState, action) => {
@@ -163,6 +166,17 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 cards: otherCards
+            };
+        case SET_LOADING:
+            let loading;
+            console.log(!state.loading);
+            if ( action.payload === null ) 
+                loading = !state.loading
+            else 
+                loading = action.payload;
+            return {
+                ...state,
+                loading
             };
         default: return {...state};
     }
