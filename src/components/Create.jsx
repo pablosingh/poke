@@ -4,12 +4,12 @@ import { useHistory } from "react-router-dom";
 import { 
     SET_POKEMON,
     ERROR_POKEMON,
-    addToCards
+    addToCards,
+    ADD_TO_CARDS
  } from '../redux/actions';
 import s from '../styles/Create.module.css';
 
 export default function Create() {
-    // const dispatch = useDispatch();
     let history = useHistory();
 
     const [data, setData] = useState({});
@@ -37,10 +37,12 @@ export default function Create() {
         });
     }
     const types = useSelector( state => state.types );
-    const submiting = async e => {
+    const idApi = useSelector( state => state.cards.length );
+    const submiting = e => {
         e.preventDefault();
         // console.log('Creando...');
         const toSend = {
+            idApi: idApi+1,
             name: data.name,
             image: data.image,
             hp: data.hp,
@@ -53,40 +55,11 @@ export default function Create() {
         }
         // console.log(toSend);
         // console.log(checked);
-        await fetch('http://localhost:3001/pokemon', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(toSend)
-        } ) 
-            // .then( js => js.json() )
-        //     .then( pokemon => {
-        //         dispatch( addPokemonFilter(pokemon) );
-        //     } )
-        //     .catch( err => console.error(err) );
-            // ////////////////////////////////////////
-            .then( async res => {
-                // console.log('RES -> Status : ',res.status);
-                // console.log(res);
-                if ( res.status === 404){
-                    // console.log("Duplicado");
-                    dispatch( { type: SET_POKEMON, payload: ERROR_POKEMON } )
-                    history.push('/pokemon');
-                }else{
-                    await fetch(`http://localhost:3001/find/name/${toSend.name}`)
-                        .then( js => {
-                            console.log(js);
-                            return js.json();
-                        } )
-                        .then( data => {
-                            toSend.id = `db ${data.id}`;
-                        } )
-                        .then( dispatch( addToCards( toSend ) ) )
-                        .then( () => dispatch( { type: SET_POKEMON, payload: toSend } ) )
-                        .then( () => history.push('/pokemon') )
-                        .catch();
-                }
-            } )
-            .catch( err => console.error(err) );
+        // dispatch( { type: SET_POKEMON, payload: ERROR_POKEMON } )
+        // history.push('/pokemon');
+        dispatch( { type: ADD_TO_CARDS, payload: toSend } );
+        dispatch( { type: SET_POKEMON, payload: toSend } );
+        history.push('/pokemon');
     }
     return (
         <form className={s.container} action='POST'>

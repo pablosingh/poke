@@ -5,6 +5,7 @@ import Pokemon from './Pokemon';
 import Create from './Create';
 import Edit from './Edit';
 import Delete from './Delete';
+import { About } from './About';
 import { Message } from './Message';
 import s from '../styles/Body.module.css';
 
@@ -31,6 +32,9 @@ export default function Body() {
             </Route>
             <Route exact path="/editSuccess">
                 <Message message={'Exito al Editar'}/>
+            </Route>
+            <Route exact path="/about">
+                <About/>
             </Route>
         </div>
     )

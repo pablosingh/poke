@@ -7,8 +7,7 @@ export default function NavBar() {
         <div className={s.container}>
             <Link to="/" className={s.btn}>Home</Link>
             <Link to="/create" className={s.btn}>Create</Link>
-            {/* <Link to="/edit" className={s.btn}>Edit</Link>
-            <Link to="/delete" className={s.btn}>Delete</Link> */}
+            <Link to="/about" className={s.btn}>About</Link>
         </div>
     )
 }

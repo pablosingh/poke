@@ -74,7 +74,7 @@ export default function Edit() {
                     toSend[prop] = 1;
         // console.log(toSend);
         dispatch(edit(toSend));
-        history.push('/editSuccess')
+        history.push('/editSuccess');
     }
     const checking = e => {
         setChecked({
