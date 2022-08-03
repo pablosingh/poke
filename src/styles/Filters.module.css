@@ -10,7 +10,7 @@
     flex-direction: column;
     align-items: center;
     /* background-color: rgba(139, 138, 138, 0.555); */
-    background-color: rgba(34, 150, 228, 0.5);
+    background-color: rgb(34, 150, 228);
     border-radius: 0.3em;
     margin: 0.5em;
     padding: 0.5em 0.5em;
@@ -20,20 +20,20 @@
     flex-direction: column;
     align-items: flex-end;
     /* background-color: rgba(139, 138, 138, 0.75); */
-    background-color: rgba(34, 150, 228, 0.5);
+    background-color: rgb(34, 150, 228);
     border-radius: 0.3em;
     margin: 0.5em;
     padding: 0.5em 0.5em;
 }
 .btn{
+    background-color: rgb(0, 80, 101);
     font-size: 1.1em;
-    /* background-color: violet; */
-    background-color: rgba(1,120,152,255);
     border-radius: 0.2em;
     border: none;
     padding: 0.5em;
     margin: 0.4em 1em;
     flex-shrink: 0;
+    color: white;
 }
 .btn:hover{
     background-color: rgb(50, 190, 224);
@@ -44,7 +44,7 @@
     margin: 0em 0.5em 0em 0.5em;
 }
 .subTitle{
-    margin: 0.2em 1.4em;
+    margin: 0.7em 1em;
 }
 .check{
     margin-left: 0.9em;

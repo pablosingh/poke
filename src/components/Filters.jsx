@@ -34,7 +34,7 @@ export default function Filters() {
     return (
         <div className={s.container}>
             <div className={s.order}>
-                <h2>Ordenar por</h2>
+                <h2 className={s.subTitle}>Ordenar por</h2>
                 <button onClick={ ()=> {
                     dispatch(orderByNameAsc());
                 } }className={s.btn} >Nombre Asc</button>
