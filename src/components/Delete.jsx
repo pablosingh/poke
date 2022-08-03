@@ -14,7 +14,7 @@ export default function Delete() {
     const deleting = () => {
         dispatch(deletePokemon(actualPokemon.idApi));
         history.push('/deleteSuccess')
-    }
+    };
     return (
         <div className={s.container}>
             <SearchBar/>
