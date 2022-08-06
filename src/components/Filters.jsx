@@ -9,7 +9,8 @@ import {
 } from '../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import s from '../styles/Filters.module.css';
-import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+// import { Link } from 'react-router-dom';
 
 export default function Filters() {
     const dispatch = useDispatch();
@@ -32,7 +33,8 @@ export default function Filters() {
     }
 
     return (
-        <div className={s.container}>
+        // <div className={s.container}>
+        <Container>
             <div className={s.order}>
                 <h2 className={s.subTitle}>Ordenar por</h2>
                 <button onClick={ ()=> {
@@ -68,6 +70,18 @@ export default function Filters() {
                     dispatch(filtersByTypes(validate()));
                     }} className={s.btn}>Aplicar</button>
             </div>
-        </div>
+            {/* </div> */}
+            </Container>
     )
-}
+};
+
+const Container = styled.div`
+    padding: 0.5em 4em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    @media(max-width: 768px){
+        display: none;
+      }
+`;

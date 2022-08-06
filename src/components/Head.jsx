@@ -12,9 +12,10 @@ import {
     } from '../redux/actions';
 import { useSelector } from 'react-redux';
 import Logo from './Logo';
-import User from './User';
 import NavBar from './NavBar';
-import s from '../styles/Head.module.css';
+import NavBarTwo from './NavBarTwo';
+// import s from '../styles/Head.module.css';
+import styled from 'styled-components';
 
 export default function Head() {
     const dispatch = useDispatch();
@@ -22,10 +23,7 @@ export default function Head() {
     useEffect( () => {
         dispatch( loadCards() );
         dispatch( loadPagesCards() );
-        // dispatch( loadSubCards() );
         dispatch( loadTypes() );
-        // dispatch( searchPokemon(1) );
-        // dispatch( loadFilters() );
     }, [] );
     useEffect( () => {
         dispatch( loadPagesCards() );
@@ -33,10 +31,21 @@ export default function Head() {
         dispatch( setActualPageCards(0) );
     }, [state.cards] );
     return (
-        <div className={s.head}>
+        <Container>
             <Logo/>
             <NavBar/>
-            <User/>
-        </div>
+            <NavBarTwo/>
+        </Container>
     )
-}
+};
+
+
+const Container = styled.div`
+    width: 100vw;
+    height: 20vh;
+    background: linear-gradient(45deg, rgba(1,120,152,255),rgba(1,120,152,255) 10.71%);
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    z-index: 1;
+`;

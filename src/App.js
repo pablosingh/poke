@@ -20,8 +20,8 @@ const Fondo = styled.div`
         content: '';
         position: fixed;
         top: 15vh;
-        width: 100vw;
-        height: 100vh;
+        min-width: 100vw;
+        min-height: 100vh;
         background-repeat: repeat-y;
         background: url(${image});
         opacity: 0.9;
