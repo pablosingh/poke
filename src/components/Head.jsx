@@ -42,10 +42,15 @@ export default function Head() {
 
 const Container = styled.div`
     width: 100vw;
-    height: 20vh;
     background: linear-gradient(45deg, rgba(1,120,152,255),rgba(1,120,152,255) 10.71%);
     display: flex;
     justify-content: space-around;
     position: fixed;
     z-index: 1;
+    @media(max-width: 768px){
+        height: 15vh;
+    }
+    @media(min-width: 768px){
+        height: 20vh;
+    }
 `;

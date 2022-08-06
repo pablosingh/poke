@@ -7,11 +7,11 @@ import Edit from './Edit';
 import Delete from './Delete';
 import { About } from './About';
 import { Message } from './Message';
-import s from '../styles/Body.module.css';
+import styled from 'styled-components';
 
 export default function Body() {
     return (
-        <div className={s.body}>
+        <Container>
             <Route exact path="/">
                 <Home/>
             </Route>
@@ -36,6 +36,17 @@ export default function Body() {
             <Route exact path="/about">
                 <About/>
             </Route>
-        </div>
+        </Container>
     )
-}
+};
+
+const Container = styled.div`
+    width: 100vw;
+    min-height: 80vh;
+    @media(max-width: 768px){
+        padding-top: 15vh;
+    }
+    @media(min-width: 768px){
+        padding-top: 20vh;
+    }
+`;
