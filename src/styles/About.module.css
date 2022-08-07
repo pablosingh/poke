@@ -1,6 +1,6 @@
 .container{
     width: 100vw;
-    height: 80vh;
+    min-height: 80vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,5 +20,6 @@
     width: 40%;
     border-radius: 1em;
     padding: 2em;
+    margin: 1em 0em 0 0;
     background-color: rgb(34, 150, 228);    
 }

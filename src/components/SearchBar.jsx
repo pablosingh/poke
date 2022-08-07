@@ -45,6 +45,7 @@ export default function SearchBar() {
 };
 
 const ContainerFilters = styled.div`
+    padding: 1em;
     display: flex;
     flex-direction: column;
     align-items: center;

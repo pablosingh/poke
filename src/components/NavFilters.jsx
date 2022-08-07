@@ -58,6 +58,7 @@ export default NavFilters;
 
 const NavContainer = styled.nav`
 margin: 0em 1em;
+padding: 0.5em;
 border-radius: 0.5em;
 @media(min-width: 768px){
     display: none;
@@ -70,7 +71,6 @@ border-radius: 0.5em;
       font-weight: bold;
     }
   }
-  padding: .4rem;
   background-color: rgb(34, 150, 228);
   z-index: 0;
   display: flex;
