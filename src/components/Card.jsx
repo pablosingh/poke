@@ -16,8 +16,8 @@ export default function Card(props) {
                 }}>
                     <img src={image} alt="Imagen" className={s.imgCard}/>
                     <h2 className={s.nameCard}>{name}</h2>
-                    <span>Attack : {attack}</span>
-                    <span>Types : { types && types.join(' | ')}</span>
+                    <p>Attack : {attack}</p>
+                    <p>Types : { types && types.join(' | ')}</p>
             </Link>
         </Container>
     )
@@ -27,18 +27,21 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0.5em 5em;
+    margin: 0.5em 1em;
     border-radius: 0.3em;
     background-color: rgb(34, 150, 228);
     padding: 1em 0;
     @media(max-width: 768px){
-        width: 45%;
+        min-width: 45%;
     }
     @media(min-width: 768px){
-        width: 15%;
+        min-width: 15%;
     }
-    &*{
+    *{
         text-decoration: none;
         color: black;
+    }
+    :hover{
+        background-color: rgba(215, 248, 246, 0.8);
     }
 `;

@@ -15,7 +15,12 @@ export default function Create() {
 
     const [data, setData] = useState({});
     const [checked, setChecked] = useState({});
+    const [nextData, setNextData] = useState(false);
     const dispatch = useDispatch();
+
+    const handleNextData = () => {
+        setNextData(!nextData);
+    };
 
     const checking = e => {
         setChecked({
@@ -54,7 +59,7 @@ export default function Create() {
             weight: data.weight,
             types: [...validate(checked)]
         }
-        // console.log(toSend);
+        console.log(toSend);
         // console.log(checked);
         // dispatch( { type: SET_POKEMON, payload: ERROR_POKEMON } )
         // history.push('/pokemon');
@@ -63,64 +68,78 @@ export default function Create() {
         history.push('/pokemon');
     }
     return (
-        <Form>
-            <Fieldset>
-                <h2>Create Pokemon</h2>
-                <label htmlFor="name" className={s.labelData} >Name 
-                    <input type="text" name="name" className={s.inputData} value={data['name']}
-                    onChange={changing}/></label>
-                <label htmlFor="image" className={s.labelData} >Image 
-                    <input type="text" name="image" className={s.inputData}
-                    onChange={changing}/></label>
-                <label htmlFor="hp" className={s.labelData} >Hp 
-                    <input type="text" name="hp" className={s.inputData}
-                    onChange={changing}/></label>
-                <label htmlFor="attack" className={s.labelData} >Attack 
-                    <input type="text" name="attack" className={s.inputData}
-                    onChange={changing}/></label>
-                <label htmlFor="defense" className={s.labelData} >Defense 
-                    <input type="text" name="defense" className={s.inputData}
-                    onChange={changing}/></label>
-                <label htmlFor="speed" className={s.labelData} >Speed
-                    <input type="text" name="speed" className={s.inputData}
-                    onChange={changing}/></label>
-                <label htmlFor="height" className={s.labelData} >Height 
-                    <input type="text" name="height" className={s.inputData}
-                    onChange={changing}/></label>
-                <label htmlFor="weight" className={s.labelData} >Weight 
-                    <input type="text" name="weight" className={s.inputData}
-                    onChange={changing}/></label>
-
-                <TypesPhone>
-                <label htmlFor="types" className={s.itemType} >Types<br/></label>
+        <Container>
+            <Form>
                 <div>
-                    { types && types.map( t => <label key={t} >{t}
-                        <input type="checkbox" name={t}
-                        onChange={checking}/></label> ) }
+                { !nextData ? <LabelsAndInputs>
+                        <h2>Create Pokemon</h2>
+                        <label htmlFor="name" className={``} >Name 
+                            <input type="text" name="name" className={`inputData`} value={data['name']}
+                            onChange={changing}/></label>
+                        <label htmlFor="image" className={``} >Image 
+                            <input type="text" name="image" className={`inputData`}
+                            onChange={changing}/></label>
+                        <label htmlFor="hp" className={``} >Hp 
+                            <input type="text" name="hp" className={`inputData`}
+                            onChange={changing}/></label>
+                        <label htmlFor="attack" className={``} >Attack 
+                            <input type="text" name="attack" className={`inputData`}
+                            onChange={changing}/></label>
+                        <label htmlFor="defense" className={``} >Defense 
+                            <input type="text" name="defense" className={`inputData`}
+                            onChange={changing}/></label>
+                        <label htmlFor="speed" className={``} >Speed
+                            <input type="text" name="speed" className={`inputData`}
+                            onChange={changing}/></label>
+                        <label htmlFor="height" className={``} >Height 
+                            <input type="text" name="height" className={`inputData`}
+                            onChange={changing}/></label>
+                        <label htmlFor="weight" className={``} >Weight 
+                            <input type="text" name="weight" className={`inputData`}
+                            onChange={changing}/></label>
+                        <ButtonCreatePhone onClick={handleNextData}>Next</ButtonCreatePhone>
+                    </LabelsAndInputs> : <></>}
+                        { nextData ? <TypesPhone> 
+                                <h4><label htmlFor="types" className={``} >Types<br/></label></h4>
+                                <div>
+                                    { types && types.map( t => <LabelItem key={t} >{t}
+                                        <input type="checkbox" name={t}
+                                        onChange={checking}/></LabelItem> ) }
+                                </div>
+                                <ButtonCreatePhone type="submit" onClick={submiting}>Create Ph</ButtonCreatePhone>
+                        </TypesPhone> : <></> }
+                        <ButtonCreate type="submit" onClick={submiting}>Create</ButtonCreate>
                 </div>
-                </TypesPhone>
-                <button type="submit" onClick={submiting}
-                    className={s.btn}>Create</button>
-            </Fieldset>
-            <Types>
-                <label htmlFor="types" className={s.itemType} >Types<br/></label>
-                <div>
-                    { types && types.map( t => <label className={s.itemType} key={t} >{t}
-                        <input type="checkbox" name={t}
-                        onChange={checking} className={s.check}/></label> ) }
-                </div>
-            </Types>
-        </Form>
+                <Types>
+                    <h4><label htmlFor="types" className={``} >Types</label></h4>
+                    <div>
+                        { types && types.map( t => <label className={``} key={t} >{t}
+                            <input type="checkbox" name={t}
+                            onChange={checking} className={s.check}/></label> ) }
+                    </div>
+                </Types>
+            </Form>
+        </Container>
     )
 };
 
-const Form = styled.form`
+const Container = styled.div`
     display: flex;
+    justify-content: center;
     align-items: center;
     padding: 1em;
 `;
 
-const Fieldset = styled.fieldset`
+const Form = styled.form`
+    min-width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgba(139, 138, 138, 0.7);
+    border-radius: 0.5em;
+`;
+
+const LabelsAndInputs = styled.fieldset`
     font-size: 1.5em;
     display: flex;
     flex-direction: column;
@@ -128,16 +147,20 @@ const Fieldset = styled.fieldset`
     justify-content: center;
     flex-shrink: 0;
     border-radius: 0.5em;
-    /* background-color: rgba(139, 138, 138, 0.555); */
     border: none;
+    label{
+        .inputData{
+            border: none;
+            border-radius: 0.2em;
+            padding: 0;
+            margin: 0.5em 0.7em;
+        }
+    }
 `;
 
 const Types = styled.fieldset`
+    margin: 1em 0em;
     font-size: 1.5em;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-wrap: wrap;
     border-radius: 0.5em;
     border: none;
     @media(max-width: 768px){
@@ -147,6 +170,7 @@ const Types = styled.fieldset`
         width: 100%;
         display: flex;
         flex-direction: column;
+        align-items: flex-end;
     }
 `;
 
@@ -160,8 +184,8 @@ const TypesPhone = styled.div`
     div{
         max-width: 768px;
         display: flex;
-        flex-direction: row;
         flex-wrap: wrap;
+        justify-content: space-between;
         label{
             display: flex;
             flex-direction: row;
@@ -170,9 +194,39 @@ const TypesPhone = styled.div`
     }
 `;
 
-const TypesPhoneDiv = styled.div`
-    display: flex;
-    flex-direction: column;
-    background-color: rgba(43, 66, 55, 44);
-    color: rgba(77, 24, 150);
+const ButtonCreate = styled.button`
+    font-size: 1em;
+    background-color: rgba(34, 150, 228, 0.5);
+    border-radius: 0.2em;
+    border: none;
+    padding: 0.5em;
+    margin: 0.7em 2em;
+    :hover{
+        background-color: rgb(50, 190, 224);
+    }
+    @media(max-width: 768px){
+        display: none;
+    }
+`;
+
+const ButtonCreatePhone = styled.button`
+    font-size: 1em;
+    background-color: rgba(34, 150, 228, 0.5);
+    border-radius: 0.2em;
+    border: none;
+    padding: 0.5em;
+    margin: 0.7em 2em;
+    :hover{
+        background-color: rgb(50, 190, 224);
+    }
+    @media(min-width: 768px){
+        display: none;
+    }
+`;
+
+const LabelItem = styled.label`
+    margin: 0.1em 1em;
+    input{
+        margin-left: 0.5em;
+    }
 `;
