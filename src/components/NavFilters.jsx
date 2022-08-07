@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import {
+    orderByNameAsc,
+    orderByNameDes,
+    orderByAttackAsc,
+    orderByAttackDes,
+    loadCards
+} from '../redux/actions';
 import styled from 'styled-components';
 import BurguerButton from './BurguerNav';
 
-function NavbarTwo() {
-
+function NavFilters() {
+    const dispatch = useDispatch();
   const [clicked, setClicked] = useState(false)
   const handleClick = () => {
     //cuando esta true lo pasa a false y vice versa
@@ -14,23 +22,42 @@ function NavbarTwo() {
     <>
       <NavContainer>
         <div className={`links ${clicked ? 'active' : ''}`}>
-          <Link to="/" onClick={handleClick}>Home</Link>
-          <Link to="/create" onClick={handleClick}>Create</Link>
-          <Link to="/about" onClick={handleClick}>About</Link>
+            <a onClick={ () => {
+                dispatch(orderByNameAsc());
+                handleClick();
+                }} >Nombre Asc</a>
+            <a onClick={ () => {
+                dispatch(orderByNameDes());
+                handleClick();
+                }}  >Nombre Des</a>
+            <a onClick={ () => {
+                dispatch(orderByAttackAsc());
+                handleClick();
+                }}  >Fuerza Asc</a>
+            <a onClick={ () => {
+                dispatch(orderByAttackDes());
+                handleClick();
+                }}  >Fuerza Des</a>
+            <a onClick={ () => {
+                dispatch( loadCards() );
+                handleClick();
+                }}  >Reset Filtros</a>
         </div>
         <div className='burguer'>
           <BurguerButton clicked={clicked} handleClick={handleClick} />
         </div>
+        <h2>Filtros</h2>
         <BgDiv className={`initial ${clicked ? ' active' : ''}`}></BgDiv>
       </NavContainer>
     </>
   )
 }
 
-export default NavbarTwo;
+export default NavFilters;
 
 
 const NavContainer = styled.nav`
+margin: 0em 1em;
 border-radius: 0.5em;
 @media(min-width: 768px){
     display: none;
@@ -38,13 +65,14 @@ border-radius: 0.5em;
   h2{
     color: white;
     font-weight: 400;
+    padding: 0em 0.5em;
     span{
       font-weight: bold;
     }
   }
   padding: .4rem;
   background-color: rgb(34, 150, 228);
-  z-index: 1;
+  z-index: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -100,7 +128,7 @@ border-radius: 0.5em;
       display: none;
     }
   }
-`
+`;
 
 const BgDiv = styled.div`
   background-color: #222;
@@ -117,6 +145,6 @@ const BgDiv = styled.div`
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    height: 130vh;
   }
 `;

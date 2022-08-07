@@ -33,7 +33,6 @@ export default function Filters() {
     }
 
     return (
-        // <div className={s.container}>
         <Container>
             <div className={s.order}>
                 <h2 className={s.subTitle}>Ordenar por</h2>
@@ -70,7 +69,6 @@ export default function Filters() {
                     dispatch(filtersByTypes(validate()));
                     }} className={s.btn}>Aplicar</button>
             </div>
-            {/* </div> */}
             </Container>
     )
 };
