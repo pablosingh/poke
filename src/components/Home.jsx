@@ -6,7 +6,7 @@ import Paged from './Paged';
 import { useSelector } from 'react-redux';
 import { Loading } from './Loading';
 import s from '../styles/Home.module.css';
-import DivAnimated from './DivAnimated';
+// import DivAnimated from './DivAnimated';
 
 export default function Home() {
     const loading = useSelector( state => state.loading );
@@ -15,12 +15,13 @@ export default function Home() {
             {
                 loading ? <Loading/> : 
                 <>
+                    {/* <DivAnimated element={ <Filters/> }/> */}
                     <Filters/>
                     <div className={s.bigArea}>
                         <SearchBar/>
                         <Paged/>
-                        {/* <Cards/> */}
-                        <DivAnimated element={ <Cards/> }/>
+                        <Cards/>
+                        {/* <DivAnimated element={ <Cards/> }/> */}
                     </div>
                 </>
             }
