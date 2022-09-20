@@ -8,33 +8,42 @@ import Delete from './Delete';
 import { About } from './About';
 import { Message } from './Message';
 import styled from 'styled-components';
+import DivAnimated from './DivAnimated';
 
 export default function Body() {
     return (
         <Container>
             <Route exact path="/">
-                <Home/>
+                <DivAnimated element={ <Home/> }/>
+                {/* <Home/> */}
             </Route>
             <Route path="/pokemon">
-                <Pokemon/>
+                <DivAnimated element={ <Pokemon/> }/>
+                    {/* <Pokemon/> */}
             </Route>
             <Route exact path="/create">
-                <Create/>
+                <DivAnimated element={ <Create/> }/>
+                    {/* <Create/>    */}
             </Route>
             <Route exact path="/edit">
-                <Edit/>
+                <DivAnimated element={ <Edit/> }/>
+                    {/* <Edit/> */}
             </Route>
             <Route exact path="/delete">
-                <Delete/>
+                <DivAnimated element={ <Delete/> }/>
+                    {/* <Delete/> */}
             </Route>
             <Route exact path="/deleteSuccess">
-                <Message message={'Exito al Borrar'}/>
+                {/* <Message message={'Exito al Borrar'}/> */}
+                <DivAnimated element={ <Message message={'Exito al Borrar'}/> }/>
             </Route>
             <Route exact path="/editSuccess">
-                <Message message={'Exito al Editar'}/>
+                {/* <Message message={'Exito al Editar'}/> */}
+                <DivAnimated element={ <Message message={'Exito al Editar'}/> }/>
             </Route>
             <Route exact path="/about">
-                <About/>
+                {/* <About/> */}
+                <DivAnimated element={ <About/> }/>
             </Route>
         </Container>
     )
