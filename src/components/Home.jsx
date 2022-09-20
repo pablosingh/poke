@@ -6,6 +6,7 @@ import Paged from './Paged';
 import { useSelector } from 'react-redux';
 import { Loading } from './Loading';
 import s from '../styles/Home.module.css';
+import DivAnimated from './DivAnimated';
 
 export default function Home() {
     const loading = useSelector( state => state.loading );
@@ -18,7 +19,8 @@ export default function Home() {
                     <div className={s.bigArea}>
                         <SearchBar/>
                         <Paged/>
-                        <Cards/>
+                        {/* <Cards/> */}
+                        <DivAnimated element={ <Cards/> }/>
                     </div>
                 </>
             }

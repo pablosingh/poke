@@ -14,8 +14,8 @@ export default function Body() {
     return (
         <Container>
             <Route exact path="/">
-                <DivAnimated element={ <Home/> }/>
-                {/* <Home/> */}
+                {/* <DivAnimated element={ <Home/> }/> */}
+                <Home/>
             </Route>
             <Route path="/pokemon">
                 <DivAnimated element={ <Pokemon/> }/>
