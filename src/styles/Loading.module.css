@@ -14,4 +14,26 @@
 
 .h1{
     color: white;
+    padding: 0.5em 0.7em;
 }
+
+.logo{
+    height: 30px;
+    width: 30px;
+    color: white;
+    padding: 0.5 4em;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .logo {
+    animation: logo infinite 2s linear;
+    }
+}
+@keyframes logo {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
