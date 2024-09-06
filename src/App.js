@@ -13,6 +13,21 @@ import s from'./App.module.css';
 import styled from 'styled-components';
 import image from './img/azul.jpeg';
 
+export default function App() {
+  return (
+    <Provider store={store}>
+      <Router>
+        <Fondo>
+          <div className={s.App}>
+            <Head/>
+            <Body/>
+          </div>
+        </Fondo>
+      </Router>
+    </Provider>
+  );
+}
+
 const Fondo = styled.div`
   min-height: 100vh;
   max-width: 100vw;
@@ -28,20 +43,3 @@ const Fondo = styled.div`
         z-index: -1;
     }
 `;
-
-function App() {
-  return (
-    <Provider store={store}>
-      <Router>
-        <Fondo>
-          <div className={s.App}>
-            <Head/>
-            <Body/>
-          </div>
-        </Fondo>
-      </Router>
-    </Provider>
-  );
-}
-
-export default App;
